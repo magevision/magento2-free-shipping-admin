@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageVision Free Shipping Admin Extension
+ *
+ * @category     MageVision
+ * @package      MageVision_FreeShippingAdmin
+ * @author       MageVision Team
+ * @copyright    Copyright (c) 2016 MageVision (http://www.magevision.com)
+ * @license      http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <freeshippingadmin>
+                <active>0</active>
+                <sallowspecific>0</sallowspecific>
+                <cutoff_cost>50</cutoff_cost>
+                <model>MageVision\FreeShippingAdmin\Model\Carrier\Method</model>
+                <name>Free</name>
+                <title>Free Shipping Admin</title>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+            </freeshippingadmin>
+        </carriers>
+    </default>
+</config>
