@@ -16,7 +16,7 @@ Useful for pickup customers that their orders are free of shipping costs.
 	* 100% open source
 
 ## Compatibility
-Magento Community Edition 2.0 - 2.1
+Magento Community Edition 2.0 - 2.1 - 2.2
 
 ## Installing the Extension
 	* Backup your web directory and store database
@@ -30,7 +30,8 @@ Magento Community Edition 2.0 - 2.1
             1. cd path_to_the_magento_root_directory 
             2. php -f bin/magento module:enable MageVision_FreeShippingAdmin
             3. php -f bin/magento setup:upgrade
-            4. php -f bin/magento cache:flush
+            4. php -f bin/magento setup:di:compile
+            5. php -f bin/magento setup:static-content:deploy
         * Log out from Magento admin and log in again
 		
 ## Support

@@ -5,15 +5,23 @@
  * @category     MageVision
  * @package      MageVision_FreeShippingAdmin
  * @author       MageVision Team
- * @copyright    Copyright (c) 2016 MageVision (http://www.magevision.com)
+ * @copyright    Copyright (c) 2017 MageVision (http://www.magevision.com)
  * @license      http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 namespace MageVision\FreeShippingAdmin\Model\Carrier;
 
 use Magento\Quote\Model\Quote\Address\RateRequest;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
+use Psr\Log\LoggerInterface;
+use Magento\Shipping\Model\Rate\ResultFactory;
+use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory;
+use Magento\Framework\App\State;
+use Magento\Shipping\Model\Carrier\AbstractCarrier;
+use Magento\Shipping\Model\Carrier\CarrierInterface;
+use Magento\Backend\App\Area\FrontNameResolver;
 
-class Method extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
-    \Magento\Shipping\Model\Carrier\CarrierInterface
+class Method extends AbstractCarrier implements CarrierInterface
 {
     /**
      * @var string
@@ -26,41 +34,47 @@ class Method extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
     protected $_isFixed = true;
 
     /**
-     * @var \Magento\Shipping\Model\Rate\ResultFactory
+     * @var ResultFactory
      */
     protected $rateResultFactory;
 
     /**
-     * @var \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory
+     * @var MethodFactory
      */
     protected $rateMethodFactory;
 
     /**
-     * @var \Magento\Framework\App\State
+     * @var State
      */
     protected $appState;
 
     /**
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param \Magento\Shipping\Model\Rate\ResultFactory $rateResultFactory
-     * @param \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory $rateMethodFactory
+     * @param ScopeConfigInterface $scopeConfig
+     * @param ErrorFactory $rateErrorFactory
+     * @param LoggerInterface $logger
+     * @param ResultFactory $rateResultFactory
+     * @param MethodFactory $rateMethodFactory
+     * @param State $appState
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory,
-        \Psr\Log\LoggerInterface $logger,
-        \Magento\Shipping\Model\Rate\ResultFactory $rateResultFactory,
-        \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory $rateMethodFactory,
-        \Magento\Framework\App\State $appState,
+        ScopeConfigInterface $scopeConfig,
+        ErrorFactory $rateErrorFactory,
+        LoggerInterface $logger,
+        ResultFactory $rateResultFactory,
+        MethodFactory $rateMethodFactory,
+        State $appState,
         array $data = []
     ) {
         $this->rateResultFactory = $rateResultFactory;
         $this->rateMethodFactory = $rateMethodFactory;
         $this->appState = $appState;
-        parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
+        parent::__construct(
+            $scopeConfig,
+            $rateErrorFactory,
+            $logger,
+            $data
+        );
     }
 
     /**
@@ -70,7 +84,7 @@ class Method extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
      */
     protected function isAdmin()
     {
-        if ($this->appState->getAreaCode() === \Magento\Backend\App\Area\FrontNameResolver::AREA_CODE) {
+        if ($this->appState->getAreaCode() === FrontNameResolver::AREA_CODE) {
             return true;
         }
         return false;
