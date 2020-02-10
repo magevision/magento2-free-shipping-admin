@@ -5,9 +5,11 @@
  * @category     MageVision
  * @package      MageVision_FreeShippingAdmin
  * @author       MageVision Team
- * @copyright    Copyright (c) 2018 MageVision (http://www.magevision.com)
+ * @copyright    Copyright (c) 2019 MageVision (http://www.magevision.com)
  * @license      http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+declare(strict_types=1);
+
 namespace MageVision\FreeShippingAdmin\Model\Carrier;
 
 use Magento\Quote\Model\Quote\Address\RateRequest;
@@ -20,6 +22,9 @@ use Magento\Framework\App\State;
 use Magento\Shipping\Model\Carrier\AbstractCarrier;
 use Magento\Shipping\Model\Carrier\CarrierInterface;
 use Magento\Backend\App\Area\FrontNameResolver;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Shipping\Model\Rate\Result;
+use Magento\Quote\Model\Quote\Address\RateResult\Method as RateResultMethod;
 
 class Method extends AbstractCarrier implements CarrierInterface
 {
@@ -81,8 +86,9 @@ class Method extends AbstractCarrier implements CarrierInterface
      * Checks if user is logged in as admin
      *
      * @return bool
+     * @throws LocalizedException
      */
-    protected function isAdmin()
+    protected function isAdmin(): bool
     {
         if ($this->appState->getAreaCode() === FrontNameResolver::AREA_CODE) {
             return true;
@@ -94,7 +100,8 @@ class Method extends AbstractCarrier implements CarrierInterface
      * FreeShipping Rates Collector
      *
      * @param RateRequest $request
-     * @return \Magento\Shipping\Model\Rate\Result|bool
+     * @return Result|bool
+     * @throws LocalizedException
      */
     public function collectRates(RateRequest $request)
     {
@@ -102,10 +109,10 @@ class Method extends AbstractCarrier implements CarrierInterface
             return false;
         }
 
-        /** @var \Magento\Shipping\Model\Rate\Result $result */
+        /** @var Result $result */
         $result = $this->rateResultFactory->create();
 
-        /** @var \Magento\Quote\Model\Quote\Address\RateResult\Method $method */
+        /** @var RateResultMethod $method */
         $method = $this->rateMethodFactory->create();
 
         $method->setCarrier('freeshippingadmin');
@@ -125,7 +132,7 @@ class Method extends AbstractCarrier implements CarrierInterface
     /**
      * @return array
      */
-    public function getAllowedMethods()
+    public function getAllowedMethods(): array
     {
         return ['freeshippingadmin' => $this->getConfigData('name')];
     }

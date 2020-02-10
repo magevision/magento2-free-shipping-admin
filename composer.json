@@ -3,16 +3,16 @@
     "description": "Free Shipping Admin Extension for Magento 2",
     "keywords": ["Magento 2", "Free Shipping", "Shipping Method", "Admin Shipping"],
     "require": {
-      "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0|~7.2.0",
-      "magento/module-backend": "100.0.*|100.1.*|100.2.*|101.0.*",
-      "magento/module-config": "100.0.*|100.1.*|101.0.*|101.1.*",
-      "magento/module-quote": "100.0.*|100.1.*|101.0.*|101.1.*",
-      "magento/module-store": "100.0.*|100.1.*|100.2.*|101.0.*",
-      "magento/module-shipping": "100.0.*|100.1.*|100.2.*|100.3.*",
-      "magento/framework": "100.0.*|100.1.*|101.0.*|102.0.*"
+      "php": "~7.1.3||~7.2.0||~7.3.0",
+      "magento/framework": "102.0.*",
+      "magento/module-backend": "101.0.*",
+      "magento/module-config": "101.1.*",
+      "magento/module-quote": "101.1.*",
+      "magento/module-shipping": "100.3.*",
+      "magento/module-store": "101.0.*"
     },
     "type": "magento2-module",
-    "version": "2.3.0",
+    "version": "2.3.1",
      "license": [
         "OSL-3.0",
         "AFL-3.0"
