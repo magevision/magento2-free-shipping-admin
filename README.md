@@ -16,7 +16,7 @@ Useful for pickup customers that their orders are free of shipping costs.
 	* 100% open source
 
 ## Compatibility
-Magento Community Edition 2.3
+Magento Community Edition 2.3 - 2.4
 
 ## Installing the Extension
 	* Backup your web directory and store database
