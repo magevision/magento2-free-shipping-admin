@@ -5,26 +5,25 @@
  * @category     MageVision
  * @package      MageVision_FreeShippingAdmin
  * @author       MageVision Team
- * @copyright    Copyright (c) 2022 MageVision (https://www.magevision.com)
+ * @copyright    Copyright (c) 2023 MageVision (https://www.magevision.com)
  * @license      http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 declare(strict_types=1);
 
 namespace MageVision\FreeShippingAdmin\Model\Carrier;
 
-use Magento\Quote\Model\Quote\Address\RateRequest;
+use Magento\Backend\App\Area\FrontNameResolver;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
-use Psr\Log\LoggerInterface;
-use Magento\Shipping\Model\Rate\ResultFactory;
-use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory;
 use Magento\Framework\App\State;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Quote\Model\Quote\Address\RateRequest;
+use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
+use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory;
 use Magento\Shipping\Model\Carrier\AbstractCarrier;
 use Magento\Shipping\Model\Carrier\CarrierInterface;
-use Magento\Backend\App\Area\FrontNameResolver;
-use Magento\Framework\Exception\LocalizedException;
 use Magento\Shipping\Model\Rate\Result;
-use Magento\Quote\Model\Quote\Address\RateResult\Method as RateResultMethod;
+use Magento\Shipping\Model\Rate\ResultFactory;
+use Psr\Log\LoggerInterface;
 
 class Method extends AbstractCarrier implements CarrierInterface
 {
@@ -83,7 +82,7 @@ class Method extends AbstractCarrier implements CarrierInterface
     }
 
     /**
-     * Checks if user is logged in as admin
+     * Indicates whether the current area is admin area
      *
      * @return bool
      * @throws LocalizedException
@@ -109,10 +108,8 @@ class Method extends AbstractCarrier implements CarrierInterface
             return false;
         }
 
-        /** @var Result $result */
         $result = $this->rateResultFactory->create();
 
-        /** @var RateResultMethod $method */
         $method = $this->rateMethodFactory->create();
 
         $method->setCarrier('freeshippingadmin');
