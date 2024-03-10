@@ -5,7 +5,7 @@
  * @category     MageVision
  * @package      MageVision_FreeShippingAdmin
  * @author       MageVision Team
- * @copyright    Copyright (c) 2023 MageVision (https://www.magevision.com)
+ * @copyright    Copyright (c) 2024 MageVision (https://www.magevision.com)
  * @license      http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 declare(strict_types=1);
@@ -37,20 +37,11 @@ class Method extends AbstractCarrier implements CarrierInterface
      */
     protected $_isFixed = true;
 
-    /**
-     * @var ResultFactory
-     */
-    protected $rateResultFactory;
+    protected ResultFactory $rateResultFactory;
 
-    /**
-     * @var MethodFactory
-     */
-    protected $rateMethodFactory;
+    protected MethodFactory $rateMethodFactory;
 
-    /**
-     * @var State
-     */
-    protected $appState;
+    protected State $appState;
 
     /**
      * @param ScopeConfigInterface $scopeConfig
