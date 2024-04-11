@@ -2,11 +2,11 @@
 /**
  * MageVision Free Shipping Admin Extension
  *
- * @category     MageVision
- * @package      MageVision_FreeShippingAdmin
- * @author       MageVision Team
- * @copyright    Copyright (c) 2024 MageVision (https://www.magevision.com)
- * @license      http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @category  MageVision
+ * @package   MageVision_FreeShippingAdmin
+ * @author    MageVision Team
+ * @copyright Copyright (c) 2024 MageVision (https://www.magevision.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 declare(strict_types=1);
 
@@ -45,12 +45,12 @@ class Method extends AbstractCarrier implements CarrierInterface
 
     /**
      * @param ScopeConfigInterface $scopeConfig
-     * @param ErrorFactory $rateErrorFactory
-     * @param LoggerInterface $logger
-     * @param ResultFactory $rateResultFactory
-     * @param MethodFactory $rateMethodFactory
-     * @param State $appState
-     * @param array $data
+     * @param ErrorFactory         $rateErrorFactory
+     * @param LoggerInterface      $logger
+     * @param ResultFactory        $rateResultFactory
+     * @param MethodFactory        $rateMethodFactory
+     * @param State                $appState
+     * @param array                $data
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
@@ -89,7 +89,7 @@ class Method extends AbstractCarrier implements CarrierInterface
     /**
      * FreeShipping Rates Collector
      *
-     * @param RateRequest $request
+     * @param  RateRequest $request
      * @return Result|bool
      * @throws LocalizedException
      */
